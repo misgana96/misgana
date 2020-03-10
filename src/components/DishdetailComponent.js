@@ -11,21 +11,22 @@ export default class DishDetail  extends Component {
     DishSelect(dish){
             this.setState({selectDishes:dish})
     }
-    renderDish(dish){
-        if(dish != null)
+
+    render() {
+        const selectedDish = this.props.dishes.map((dish)=>{
             return(
-                <Card>
-                    <CardBody className="col-12 col-sm-5 col-md-5">
+                <div className="col-12 col-md-5 m-1">
+                    <Card key = {dish.id}>
+                        onClick = {()=>this.DishSelect(dish)}
                         <CardText> {dish.description}</CardText>
                         <CardText> {dish.comments.comment}</CardText>
-                    </CardBody>
-                </Card>
+                    </Card>
+                </div>
             )
-    }
-    render() {
+        })
         return (
             <div className="row">
-                <div className="col-12 col-md-5 col-m-1">
+                <div className="col-12 col-md-5 m-1">
                     {this.renderDish(this.state.selectDishes)}
                 </div>
             </div>
